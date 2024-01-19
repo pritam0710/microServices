@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy: 
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: ppritam0710/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: 'src/**/*.js'
+            dest: .
+    - image: ppritam0710/comments-service
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: '*.js'
+            dest: .
+    - image: ppritam0710/posts-service
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: '*.js'
+            dest: .
+    - image: ppritam0710/event-service
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: '*.js'
+            dest: .
+    - image: ppritam0710/moderation-service
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: '*.js'
+            dest: .
+    - image: ppritam0710/query-service
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: '*.js'
+            dest: .
