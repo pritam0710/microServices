@@ -55,7 +55,7 @@ app.listen(5051, async() => {
     console.log('Query service chl rha h 5051 pr')
 
     try {
-        const res = await axios.get('http://localhost:6000/events');
+        const res = await axios.get('http://event-bus-srv:6000/events');
 
         for(let event of res.data) {
             console.log('Handling events');

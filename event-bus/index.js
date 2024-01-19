@@ -12,10 +12,10 @@ app.post('/events', (req, res) => {
     const event = req.body;
     events.push(event);
 
-    axios.post('http://localhost:4000/events', event).catch(err => console.log(err.message))// posts
-    axios.post('http://localhost:5000/events', event).catch(err => console.log(err.message)) // comment
-    axios.post('http://localhost:5051/events', event).catch(err => console.log(err.message)) // query
-    axios.post('http://localhost:6051/events', event).catch(err => console.log(err.message)); // moderation
+    axios.post('http://posts-clusterip-srv:4000/events', event).catch(err => console.log(err.message))// posts
+    axios.post('http://comments-srv:5000/events', event).catch(err => console.log(err.message)) // comment
+    axios.post('http://query-srv:5051/events', event).catch(err => console.log(err.message)) // query
+    axios.post('http://moderation-srv:6051/events', event).catch(err => console.log(err.message)); // moderation
 
     res.send({status: "OK"})
 })
