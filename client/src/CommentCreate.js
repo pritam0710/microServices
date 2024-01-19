@@ -11,7 +11,7 @@ const CommentCreate = ({postId}) => {
     const onCommentSubmitHandler = async (evt) => {
         evt.preventDefault();
 
-        await axios.post(`http://localhost:5000/posts/${postId}/comments`, {content});
+        await axios.post(`http://posts.com/posts/${postId}/comments`, {content});
 
         setContent('');
     }
